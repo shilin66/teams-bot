@@ -5,8 +5,8 @@ services:
     build: .  
     ports:  
       - '3978:3978'  
-    environment:  
-      - NODE_ENV=production  
+    # environment:  
+    #   - NODE_ENV=production  
     # env_file:  
     #   - .env  
     volumes:
