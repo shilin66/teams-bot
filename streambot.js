@@ -6,8 +6,6 @@ if (parseInt(process.versions.node.split('.')[0]) >= 14) {
 } else {
     fetch = require('node-fetch');
 }
-const { DialogSet, WaterfallDialog } = require("botbuilder-dialogs");
-// Main bot class extending ActivityHandler
 class TeamsStreamingBot extends ActivityHandler {
     constructor() {
         super();

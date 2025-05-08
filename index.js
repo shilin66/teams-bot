@@ -16,7 +16,7 @@ const {
 
 // This bot's main dialog.
 const { EchoBot } = require('./bot');
-const { TeamsStreamingBot } = require('./streamBot');
+const { TeamsStreamingBot } = require('./streambot');
 
 // Create HTTP server
 const server = restify.createServer();
