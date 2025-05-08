@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.19/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.19",
+  "version": "1.0.0",
+  "id": "${bot_id}",
+  "developer": {
+    "name": "Zenlayer, Inc.",
+    "websiteUrl": "https://www.zenlayer.com",
+    "privacyUrl": "https://www.zenlayer.com/privacy-policy",
+    "termsOfUseUrl": "https://www.zenlayer.com"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "ZenlayerBot",
+    "full": "ZenlayerBot"
+  },
+  "description": {
+    "short": "An AI conversation bot",
+    "full": "An AI conversation bot"
+  },
+  "accentColor": "#FFFFFF",
+  "bots": [
+    {
+      "botId": "${bot_id}",
+      "scopes": [
+        "personal",
+        "groupChat",
+        "team"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "validDomains": [
+    "token.botframework.com",
+    "*.ngrok-free.app",
+    "*.ngrok.io",
+    "*.zenlayer.win",
+    "*.zenlayer.ai"
+  ]
+}

@@ -1,19 +1,9 @@
 version: '3.9'  
   
 services:  
-  nodejs-app:  
+  bot-app:
     build: .  
     ports:  
-      - '3978:3978'  
-    # environment:  
-    #   - NODE_ENV=production  
-    # env_file:  
-    #   - .env  
+      - '3978:3978'
     volumes:
       - ./.env:/app/.env
-    networks:  
-      - dify-network  
-
-networks:  
-  dify-network:  
-    driver: bridge  

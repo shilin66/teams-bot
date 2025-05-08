@@ -4,14 +4,11 @@
 const path = require('path');
 
 const dotenv = require('dotenv');
-// Import required bot configuration.
 const ENV_FILE = path.join(__dirname, '.env');
 dotenv.config({ path: ENV_FILE });
 
 const restify = require('restify');
 
-// Import required bot services.
-// See https://aka.ms/bot-services to learn more about the different parts of a bot.
 const {
     CloudAdapter,
     ConfigurationBotFrameworkAuthentication
@@ -19,12 +16,13 @@ const {
 
 // This bot's main dialog.
 const { EchoBot } = require('./bot');
+const { TeamsStreamingBot } = require('./streamBot');
 
 // Create HTTP server
 const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
-server.listen(process.env.port || process.env.PORT || 3978, () => {
+server.listen(process.env.port || 3978, () => {
     console.log(`\n${ server.name } listening to ${ server.url }`);
     console.log('\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator');
     console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
@@ -65,16 +63,7 @@ const myBot = new EchoBot();
 
 // Listen for incoming requests.
 server.post('/api/messages', async (req, res) => {
+    const streamBot = new TeamsStreamingBot();
     // Route received a request to adapter for processing
-    await adapter.process(req, res, (context) => myBot.run(context));
-});
-
-// Listen for Upgrade requests for Streaming.
-server.on('upgrade', async (req, socket, head) => {
-    // Create an adapter scoped to this WebSocket connection to allow storing session data.
-    const streamingAdapter = new CloudAdapter(botFrameworkAuthentication);
-    // Set onTurnError for the CloudAdapter created for each connection.
-    streamingAdapter.onTurnError = onTurnErrorHandler;
-
-    await streamingAdapter.process(req, socket, head, (context) => myBot.run(context));
+    await adapter.process(req, res, (context) => streamBot.run(context));
 });
